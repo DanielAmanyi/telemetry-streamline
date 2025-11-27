@@ -1,0 +1,43 @@
+Telemetry Streamline. Real-Time Device
+Insights Platform
+Problem
+Organizations managing distributed devices lack real-time visibility into device performance.
+Telemetry arrives late, unstructured, or incomplete, causing slow incident detection, poor
+diagnostics, and higher operational costs.
+Goal
+Build a production-grade, serverless streaming ETL system that ingests telemetry in real time,
+validates and enriches events, tracks lineage, detects anomalies, and makes both real-time and
+historical analytics instantly accessible.
+Solution
+I designed a fully serverless telemetry pipeline using AWS Kinesis, Lambda, DynamoDB,
+OpenSearch, S3, Glue, Athena, and Redshift.
+Devices publish JSON telemetry to Kinesis. A Schema Validator Lambda enforces structure
+using a Schema Registry. An enrichment Lambda adds metadata and writes lineage records.
+Clean events are routed to DynamoDB for latest device state, OpenSearch for diagnostics, and
+S3 as the raw event lake. An anomaly-detection Lambda triggers alerts via SNS. Glue Catalog
+and Athena enable SQL-based analytics. Redshift provides warehouse-scale querying. All
+infrastructure is deployed with Terraform and continuously delivered via GitHub Actions.
+CloudWatch and X-Ray provide logging, metrics, and tracing.
+Architecture
+Kinesis → Validator Lambda → Enrichment + Lineage → Router → DynamoDB (state) /
+OpenSearch (search) / S3 (raw lake) → Athena/Redshift
+Supports schema registry, lineage store, anomaly alerts, DLQ processing, and full IaC + CI/CD.
+Outcomes
+●
+Real-time ingestion pipeline capable of scaling to high-throughput workloads.
+●
+●
+●
+●
+●
+●
+Guaranteed schema consistency and event lineage.
+Sub-second device state updates in DynamoDB.
+Full-text search and diagnostics via OpenSearch.
+Automatic anomaly detection and alerting.
+Historical analytics enabled through Athena and Redshift.
+End-to-end infrastructure automated using Terraform and GitHub Actions.
+Tech Stack
+AWS (Kinesis, Lambda, DynamoDB, S3, OpenSearch, Glue, Athena, Redshift, SNS,
+CloudWatch, X-Ray), Terraform, GitHub Actions, Python, SQL.
+A case study by Amanyi Daniel

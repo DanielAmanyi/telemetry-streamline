@@ -1,0 +1,10 @@
+{
+    "event_id": "example-event-id",
+    "device_id": "device-sample",
+    "timestamp": 1700000000,
+    "metrics": {
+        "temperature": 72.5,
+        "cpu": 34.1,
+        "battery": 88.0
+    }
+}

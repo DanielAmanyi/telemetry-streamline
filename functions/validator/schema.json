@@ -1,0 +1,15 @@
+{
+  "required": ["device_id", "timestamp", "metrics"],
+  "properties": {
+    "device_id": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "temperature": { "type": "number" },
+        "cpu": { "type": "number" },
+        "battery": { "type": "number" }
+      }
+    }
+  }
+}
