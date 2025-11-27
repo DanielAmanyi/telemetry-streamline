@@ -1,43 +1,118 @@
-Telemetry Streamline. Real-Time Device
-Insights Platform
-Problem
-Organizations managing distributed devices lack real-time visibility into device performance.
-Telemetry arrives late, unstructured, or incomplete, causing slow incident detection, poor
-diagnostics, and higher operational costs.
-Goal
-Build a production-grade, serverless streaming ETL system that ingests telemetry in real time,
-validates and enriches events, tracks lineage, detects anomalies, and makes both real-time and
-historical analytics instantly accessible.
-Solution
-I designed a fully serverless telemetry pipeline using AWS Kinesis, Lambda, DynamoDB,
-OpenSearch, S3, Glue, Athena, and Redshift.
-Devices publish JSON telemetry to Kinesis. A Schema Validator Lambda enforces structure
-using a Schema Registry. An enrichment Lambda adds metadata and writes lineage records.
-Clean events are routed to DynamoDB for latest device state, OpenSearch for diagnostics, and
-S3 as the raw event lake. An anomaly-detection Lambda triggers alerts via SNS. Glue Catalog
-and Athena enable SQL-based analytics. Redshift provides warehouse-scale querying. All
-infrastructure is deployed with Terraform and continuously delivered via GitHub Actions.
-CloudWatch and X-Ray provide logging, metrics, and tracing.
-Architecture
-Kinesis → Validator Lambda → Enrichment + Lineage → Router → DynamoDB (state) /
-OpenSearch (search) / S3 (raw lake) → Athena/Redshift
-Supports schema registry, lineage store, anomaly alerts, DLQ processing, and full IaC + CI/CD.
-Outcomes
-●
-Real-time ingestion pipeline capable of scaling to high-throughput workloads.
-●
-●
-●
-●
-●
-●
-Guaranteed schema consistency and event lineage.
-Sub-second device state updates in DynamoDB.
-Full-text search and diagnostics via OpenSearch.
-Automatic anomaly detection and alerting.
-Historical analytics enabled through Athena and Redshift.
-End-to-end infrastructure automated using Terraform and GitHub Actions.
-Tech Stack
-AWS (Kinesis, Lambda, DynamoDB, S3, OpenSearch, Glue, Athena, Redshift, SNS,
-CloudWatch, X-Ray), Terraform, GitHub Actions, Python, SQL.
-A case study by Amanyi Daniel
+%PDF-1.4
+%���� ReportLab Generated PDF document http://www.reportlab.com
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 5 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 11 0 R /MediaBox [ 0 0 612 792 ] /Parent 10 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/BaseFont /Symbol /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+6 0 obj
+<<
+/Contents 12 0 R /MediaBox [ 0 0 612 792 ] /Parent 10 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+7 0 obj
+<<
+/Contents 13 0 R /MediaBox [ 0 0 612 792 ] /Parent 10 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+8 0 obj
+<<
+/PageMode /UseNone /Pages 10 0 R /Type /Catalog
+>>
+endobj
+9 0 obj
+<<
+/Author (\(anonymous\)) /CreationDate (D:20251127011014+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20251127011014+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+10 0 obj
+<<
+/Count 3 /Kids [ 4 0 R 6 0 R 7 0 R ] /Type /Pages
+>>
+endobj
+11 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 431
+>>
+stream
+Gat=f;+ne\'SYHA/'an"<h$HfgV'Rb&:E+ei,e8Q[Reka=XWk!gLdLF:)$AE#re2t^3^KIW1D/9Ka$lYDB9Z4LK]9U@06+\#8QS,G03K7LpTebk(@?;FjXJ+7S1h`'HrNYc6P_"1W`S*<R@%Ehhi&h[V?deG%rc#ZuR%A8@5j@JLa/8=fPb[f@l@qV5`Ysl2tdSnTe_>35=C.HCib"%/1o@dds]]GFs"?="gAmYqhV!V,(#$SuTJ,Xm8,^V66.(B7$AF+;-+VXPud(#l1*)<F'nbG""0FrQ,Y;UEK,mNqiU],1"G.DfsWqK]njcdHs'RJ1tU%a>/SC4R*g1oe,TGjdDGOhQE9AX`h(eHS`K;=,'?&>$X#J2k.>$s!'GX'F.92%Fo9/!_()>15.?#YP6QGRDYc8gY1./d[&Yg!5TH[Bs.m~>endstream
+endobj
+12 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1320
+>>
+stream
+Gatm:9lo&I&A@sBlqqIB=sWc,+6B]E;l<AAV<u)8LkJ@L+JAe.>kQ_C!Mh!aiFqLr7l)3%!UO%WHZ,U>LA6H$Dd!dE0Bi$hUbJO^,DDn#7#P9\>+GLM$/;$"KI1=D2BrtG7r]AA.>Zui.%F*fSg9M58if1&U2ZG<=\@b7-qmn&-urI;?aX'0?@JQd?aTUITmXc@&8@R9M8OW[+%8p%a2u[u?R(;<%4&(hqQ#Q<jIOS!-2q=RW6.rY.[GuBVb@r.`Nlp7UPuBFapgq.51(T2[SN>b_,)UaNdA7dRt/4S3)ZZ_f'WsQCjV.JW]@CVOE&B#VGGO.4TU,qPqlC9Lp/A(6KA=%UfLatC7(e2lbUtd6t$XLFCUh7KE$Xf:Q!8("cT@S0)-hY7R]H)UuK$&1*]7=XYTM\/K!Q;A\:fnlS[:W)aigDB;MBe$>3D&fghl3Z3@Rf-o]`D8O3JYm;L@XU-uRMP9TUW\A%Q,MmU89^?1[a)-2B'cn-`mEbs(3jf*Bl<JcpPjic/SQ-tK#j#[AL88]EH7sQ$a_k=&MUWKm"^R)F?P-sW6Yp)Zt;5\ZuEO$<T2h0:o.p]SI1%hgdQ<q)[,p?=:YNW&"-D27$dJ8sQmgUL6dk*):)$;=\(!3oW%u.o>R#K$MHD]OO2:]]<JSk#6o@t3"DS5PAQ=.'o$3%#;BgF/#3I?&b>EXOB]C4^5*bNMk"=L=u8t\$;+C*iF;mB5+SeK[0(8)r-:'o\o?i+rSimjPT%6V,_[FobERE'd4(4]i>%0SFMEAY_ZD:?W<>XFf%cabqjs(tM)EelBAca^3r>qmsTg*9m)Hd*A:5[MeG+B<LKH_-Wl4Bd8+$&9?t]4M.[-.Rb$K$f0cc+LHUKe;MPYb15-c-g3!?JM&W>j`<_]9'&<ra6MNrCDDJmb,UJGV([GC?`scQ9kqj3U2G\Sck603=_f2ra&CE^kQgAKQ)qd&g_1]k)A;1CX+l`[8u_V0i,"5_psNU4D@l'Sbq(TDpIjh"X!!;ebYcAgqs,:RGN=/B9S+B\&H5i3o+N4KgW*2s)I?-7m-F6(RtjEGr'31o@(CmDlQdf)<Ca28G'A3ft.j0L3YFj^JP$(?o[4q\s\!2;lM8*CutfE6/DU[C($(`9,pqiUtYX6,trKs=l-(C]@s-^glJYA,/VH)VnJ7(l`L>_M+;<,]'o/ipXC.TND'i;KA+&ODF3:o2OHnFBnu0AJ1`N1cu:@!dkK-DGH]2V;qSjtaEDNM?7uP<V[E<m[;`>CJ!e"V)6Rb39)7A[DZkif"ag%cCn3GBiltpsNF,bdT=VWApT:<VIf]6`)sR~>endstream
+endobj
+13 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 450
+>>
+stream
+Gas1Z9i$C,'YO#fk(mVBfnDb>X<1GPUUH96K9m=]Z3j54bCP03!b,&;R[<AL12l$n/;7kop2<h/=#$R&$H`qK6%-dD]Z+f)*A.-*%-InJKcqDZYj&?AB=J-/XP;qrBW'h_;geZ9-0ts+AZa-J-9Of*=bA5r[ot+9Ur$#B6Lj;@Uie$Yg:9KH3UX#<4E&%T>o$\''G(*[WArsM>6q(kJSV4(lc./J?U$A5N8qZ4o`k>-3NhgJ08.6U"eu*g=YL@gBT/R<ln_C<%!:@&A#r==a!/V:BqB^C[Ge\,qo?]-n-Al)NGY4-V2O<tf]gbf^"c&$ZQH"V[B'\c]Qd44_+gtT;;POi6ls296)[?D.`htanj\_5Q3kR"%IY_iUN-/l0:R((Fgpj$g%+k(Jfkh/`V3qD(_Nb9Rs-Cs/PB[#^9fpO($U2=lmL#)joe%t=Pku#S^[~>endstream
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000073 00000 n 
+0000000124 00000 n 
+0000000231 00000 n 
+0000000343 00000 n 
+0000000538 00000 n 
+0000000615 00000 n 
+0000000810 00000 n 
+0000001005 00000 n 
+0000001074 00000 n 
+0000001357 00000 n 
+0000001429 00000 n 
+0000001951 00000 n 
+0000003363 00000 n 
+trailer
+<<
+/ID 
+[<266b4a202302c282c3aa69dc88cfee79><266b4a202302c282c3aa69dc88cfee79>]
+% ReportLab generated PDF document -- digest (http://www.reportlab.com)
+
+/Info 9 0 R
+/Root 8 0 R
+/Size 14
+>>
+startxref
+3904
+%%EOF
