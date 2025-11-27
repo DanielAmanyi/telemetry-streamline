@@ -1,76 +1,62 @@
-# Telemetry Streamline  
-Real-Time Device Insights Pipeline for High-Volume IoT Telemetry
+# Telemetry Streamline
 
-**Telemetry Streamline** is an enterprise-grade, event-driven data pipeline designed to ingest, validate, enrich, route, and analyze real-time telemetry from IoT and mobile devices at scale.  
-Built with AWS serverless technologies, the system delivers high availability, low-latency processing, operational lineage, anomaly detection, and downstream analytics capabilities.
+Telemetry Streamline is a real-time, serverless data pipeline for ingesting, validating, enriching, routing, and analyzing high-volume telemetry from devices and applications. It is built entirely on AWS using Terraform and follows an event-driven, pay-per-use architecture optimized for scalability and operational efficiency.
 
 ---
 
-## 🔥 Key Features
+## Features
 
-- **High-throughput ingestion** using Amazon Kinesis  
-- **Schema validation** with Lambda + DynamoDB  
-- **Event enrichment** using metadata lineage tables  
-- **Intelligent routing** to DynamoDB, S3 Data Lake, and OpenSearch  
-- **Real-time anomaly detection** with automatic alerting  
-- **Automated data cataloging** via Glue Crawler  
-- **Serverless-by-default** architecture: scalable, cost-efficient, and operationally simple  
-- **End-to-end observability** with CloudWatch Logs  
-
----
-
-## 📌 Architecture Diagram
-
-Below is the full architecture for Telemetry Streamline:
-
-![Telemetry Streamline Architecture](./architecture.png)
-
-_(If you want this embedded, drop the image in the repo as `architecture.png` and the diagram will render.)_
+- High-throughput ingestion with Amazon Kinesis  
+- Schema validation using Lambda and DynamoDB  
+- Metadata enrichment with lineage tracking  
+- Intelligent routing to DynamoDB, S3, and OpenSearch  
+- Fully serverless, auto-scaling design  
+- Real-time anomaly detection and alerting via SNS  
+- Automatic data cataloging with AWS Glue  
+- End-to-end observability through CloudWatch Logs and OpenSearch  
 
 ---
 
-## 📄 Whitepaper
+## Architecture
 
-A detailed whitepaper explaining system design, tradeoffs, and operational considerations:
+Telemetry Streamline processes events through a staged workflow:
 
-**[Download Telemetry Streamline Whitepaper](./Telemetry_Streamline_Whitepaper.pdf)**
+1. **Ingestion** – Events enter the system through a Kinesis Data Stream.  
+2. **Validation** – The Validator Lambda checks schema integrity and rejects malformed input.  
+3. **Enrichment** – The Enrichment Lambda adds metadata using lookup tables.  
+4. **Routing** – The Router Lambda dispatches events to:  
+   - DynamoDB for device state snapshots  
+   - S3 for raw event storage  
+   - OpenSearch for indexing and analytics  
+5. **Anomaly Detection** – Outliers trigger the Anomaly Detector Lambda, which publishes alerts to SNS.  
+6. **Cataloging** – AWS Glue crawls S3 to update the metadata catalog for analytics.  
 
 ---
 
-## 🏗 Project Structure
+## Repository Structure
 
-TELEMETRY-STREAMLINE/
-│
-├── infrastructure/ # Terraform IaC (Kinesis, Lambda, IAM, DynamoDB, S3, SNS, OpenSearch, Glue)
-├── functions/ # All Lambda function source code
-│ ├── validator/
-│ ├── enrichment/
-│ ├── router/
-│ ├── anomaly_detector/
-│ └── dlq_processor/
-│
-├── device-simulator/ # Python-based event simulator for testing the pipeline
-├── analytics/ # OpenSearch dashboards, queries, and analysis templates
-│
-├── setup.sh # Utility bootstrap script
-├── architecture.png # (Optional) System diagram
-└── Telemetry_Streamline_Whitepaper.pdf
+infrastructure/ # Terraform IaC for all AWS resources
+functions/ # Lambda function source code
+device-simulator/ # Event generator for pipeline testing
+analytics/ # Query templates and dashboards
+setup.sh # Utility setup script
+Telemetry_Streamline_Whitepaper.pdf
 
 yaml
 Copy code
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
-### 1. Build Lambda packages
+### Build Lambda packages
 
 ./scripts/build.sh
 
 shell
 Copy code
 
-### 2. Initialize Terraform
+### Initialize Terraform
 
 cd infrastructure
 terraform init
@@ -78,21 +64,18 @@ terraform init
 shell
 Copy code
 
-### 3. Deploy infrastructure
+### Deploy infrastructure
 
 terraform apply
 
 yaml
 Copy code
 
-This will provision:  
-Kinesis, 5 Lambda functions, DynamoDB tables, S3 bucket, SNS topic, Glue crawler, IAM roles, and OpenSearch domain.
-
 ---
 
-## 🧪 Testing the Pipeline (End-to-End)
+## Testing the Pipeline
 
-Use the device simulator included in the repo:
+Generate test events with the device simulator:
 
 cd device-simulator
 python3 publish.py
@@ -100,51 +83,28 @@ python3 publish.py
 yaml
 Copy code
 
-The pipeline will:
+Events are processed through validation, enrichment, routing, and anomaly detection.  
+You can observe data in:
 
-1. Ingest the event via Kinesis  
-2. Validate schema  
-3. Enrich with metadata  
-4. Route to DynamoDB, S3, OpenSearch  
-5. Detect anomalies  
-6. Trigger alerts to SNS (if applicable)
-
----
-
-## 📊 Observability
-
-Telemetry Streamline emits logs and traces to:
-
-- **CloudWatch Logs**  
-- **OpenSearch** (searchable telemetry index)  
-- **DynamoDB State Table** for device snapshots  
-- **S3 Data Lake** for batch analytics  
+- DynamoDB device state table  
+- S3 raw bucket  
+- OpenSearch index  
+- CloudWatch logs  
+- SNS alert topic (if anomalies occur)
 
 ---
 
-## 🌍 Use Cases
+## Whitepaper
 
-- Device health monitoring  
-- Automotive diagnostics  
-- Fintech transaction stream validation  
-- Mobile telemetry aggregation  
-- Supply-chain sensor data  
-- Fraud detection signals  
-- Log normalization pipelines  
+A detailed technical design document is included:
+
+**Telemetry_Streamline_Whitepaper.pdf**
 
 ---
 
-## 🧑‍💻 Author
+## Author
 
 **Amanyi Daniel Sunday**  
-Cloud Engineer & DevOps Consultant  
-AWS | Terraform | Serverless | Distributed Systems
-
-LinkedIn: https://www.linkedin.com/in/daniel-amanyi-87169472  
+Cloud Engineer • DevOps • Serverless  
 GitHub: https://github.com/DanielAmanyi  
-
----
-
-## 📬 License
-
-MIT License  
+LinkedIn: https://www.linkedin.com/in/daniel-amanyi-87169472
