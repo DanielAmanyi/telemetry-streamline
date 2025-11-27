@@ -19,6 +19,8 @@ Telemetry Streamline is a real-time, serverless data pipeline for ingesting, val
 
 ## Architecture
 
+![Telemetry Streamline Architecture](architecture.png)
+
 Telemetry Streamline processes events through a staged workflow:
 
 1. **Ingestion** – Events enter the system through a Kinesis Data Stream.  
@@ -41,6 +43,7 @@ device-simulator/ # Event generator for pipeline testing
 analytics/ # Query templates and dashboards
 setup.sh # Utility setup script
 Telemetry_Streamline_Whitepaper.pdf
+architecture.png
 
 yaml
 Copy code
@@ -98,7 +101,7 @@ You can observe data in:
 
 A detailed technical design document is included:
 
-**Telemetry_Streamline_Whitepaper.pdf**
+**[Telemetry Streamline Whitepaper](Telemetry_Streamline_Whitepaper.pdf)**
 
 ---
 
